@@ -2,17 +2,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const webrtc = require("wrtc");
-const http = require('http');
-const https = require('https');
-const fs = require('fs');
-
-const HTTP_PORT = 8080;
-const HTTPS_PORT = 8443;
-
-const options = {
-	key: fs.readFileSync('./rootca.key'),
-	cert: fs.readFileSync('./rootca.crt')
-};
 
 let senderStream;
 
@@ -65,9 +54,4 @@ function handleTrackEvent(e, peer) {
 };
 
 
-//app.listen(5000, () => console.log('server started'));
-
-http.createServer(app).listen(HTTP_PORT);
-
-// Create an HTTPS server.
-https.createServer(options, app).listen(HTTPS_PORT);
+app.listen(5000, () => console.log('server started'));
